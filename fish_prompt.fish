@@ -54,14 +54,14 @@ function fish_prompt
 
   # Show git branch and dirty state
   if [ (_git_branch_name) ]
-    set -l git_branch '(' (_git_branch_name) ')'
+    set -l git_branch ':' (_git_branch_name)
 
     if [ (_is_git_dirty) ]
-      set git_info $red $git_branch " ★ "
+      set git_info $red " ✗" $git_branch
     else
-      set git_info $green $git_branch
+      set git_info $green " ✓" $git_branch
     end
-    echo -n -s ' · ' $git_info $normal
+    echo -n -s $git_info $normal
   end
 
   # Terminate with a nice prompt char
@@ -72,7 +72,7 @@ function fish_prompt
     set_color normal
     echo -n -s " "
   else
-    echo -n -s $green ' ─╼ ' $normal
+    echo -n -s $magenta ' → ' $normal
   end
 
 end
