@@ -1,9 +1,3 @@
-# name: idan
-# Display the following bits on the left:
-# * Virtualenv name (if applicable, see https://github.com/adambrenecki/virtualfish)
-# * Current directory name
-# * Git branch and dirty state (if inside a git repo)
-
 function prompt_segment -d "Function to show a segment"
   # Get colors
   set -l bg $argv[1]
