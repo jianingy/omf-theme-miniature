@@ -67,6 +67,7 @@ function fish_prompt
   # Terminate with a nice prompt char
   set -l uid (id -u $USER)
   if [ $uid -eq 0 ]
+    echo -n -s " "
     prompt_segment red white " ! "
     set_color normal
     echo -n -s " "
