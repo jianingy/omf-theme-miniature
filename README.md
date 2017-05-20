@@ -19,14 +19,15 @@ $ omf install miniature
 
 ## Features
 
-* Lorem ipsum dolor sit amet.
-* Consectetur adipisicing elit.
+* Minimalistic style
+* Current directory in right prompt with dimmed color
+* Mark root shell with a red bang
 
 
 ## Screenshot
 
 <p align="center">
-<img src="{{SCREENSHOT_URL}}">
+<img src="https://raw.githubusercontent.com/jianingy/omf-theme-miniature/master/screenshot.png">
 </p>
 
 
