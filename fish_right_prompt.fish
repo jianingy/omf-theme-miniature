@@ -9,7 +9,11 @@ function fish_right_prompt
   set -l red (set_color -o red)
   set -l normal (set_color normal)
 
-  echo -n -s $grey ' ← ' $underline (prompt_pwd) $normal
+  if test -n "$SSH_CONNECTION"
+    set host (hostname) ":"
+  end
+
+  echo -n -s $grey ' ← ' $host $underline (prompt_pwd) $normal
 
   if test $last_status -ne 0
     set_color red

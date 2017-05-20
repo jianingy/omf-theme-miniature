@@ -22,6 +22,7 @@ $ omf install miniature
 * Minimalistic style
 * Current directory in right prompt with dimmed color
 * Mark root shell with a red bang
+* Display hostname only on remote login
 
 
 ## Screenshot
