@@ -26,11 +26,16 @@ function fish_prompt
   set -l yellow (set_color -o yellow)
   set -l red (set_color -o red)
   set -l blue (set_color -o blue)
+  set -l blue_underline (set_color -u -o blue)
   set -l magenta (set_color -o magenta)
   set -l green (set_color -o green)
   set -l normal (set_color normal)
 
-  set -l cwd $blue(basename (prompt_pwd))
+  set -l cwd (if test -n "$SSH_CONNECTION"
+                  echo $blue_underline(basename (prompt_pwd))
+              else
+                  echo $blue(basename (prompt_pwd))
+               end)
 
   # output the prompt, left to right
 

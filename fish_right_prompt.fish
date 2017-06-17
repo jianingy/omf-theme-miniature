@@ -1,13 +1,13 @@
 function fish_right_prompt
   set -l last_status $status
-  set -l cyan (set_color -o cyan)
+  set -l cyan (set_color cyan)
   set -l grey (set_color 777)
-  set -l underline (set_color -u)
   set -l red (set_color -o red)
   set -l normal (set_color normal)
 
   if test -n "$SSH_CONNECTION"
-    set host (hostname) ":"
+    set host $cyan (hostname) $grey ":"
+    set underline (set_color -u)
   end
 
   echo -n -s $grey ' ← ' $host $underline (prompt_pwd) $normal
