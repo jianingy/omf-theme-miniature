@@ -1,11 +1,3 @@
-function fish_title
-  if type -q xdotool
-    echo (xdotool get_desktop)#$USER@(hostname):$PWD
-  else
-    echo $USER@(hostname):$PWD
-  end
-end
-
 function prompt_segment -d "Function to show a segment"
   # Get colors
   set -l bg $argv[1]
