@@ -1,6 +1,6 @@
 function fish_title
   if type -q xdotool
-    echo (xdotool get_desktop)#$USER@(hostname):(prompt_pwd)
+    echo (xdotool get_desktop ^/dev/null)#$USER@(hostname):(prompt_pwd)
   else
     echo $USER@(hostname):$PWD
   end
