@@ -43,10 +43,6 @@ function fish_prompt
   # Add a newline before prompts
   echo -e ""
 
-  if set -q SSH_CONNECTION
-      echo -n -s (set_color -u blue) (id -nu) '@' (hostname) ':' $normal
-  end
-
   # Display the current directory name
   echo -n -s "$cwd$normal"
 
@@ -79,7 +75,11 @@ function fish_prompt
     set_color normal
     echo -n -s " "
   else
-    echo -n -s $magenta ' λ ' $normal
+    if set -q SSH_CONNECTION
+      echo -n -s $yellow ' ⟷ ' $normal
+    else
+      echo -n -s $magenta ' λ ' $normal
+    end
   end
 
 end
