@@ -22,6 +22,7 @@ function _is_git_dirty
 end
 
 function fish_prompt
+  set -l last_status $status
   set -l cyan (set_color -o cyan)
   set -l yellow (set_color -o yellow)
   set -l red (set_color -o red)
@@ -31,7 +32,7 @@ function fish_prompt
   set -l green (set_color -o green)
   set -l normal (set_color normal)
 
-  set -l cwd (if test -n "$SSH_CONNECTION"
+  set -l cwd (if set -q SSH_CONNECTION
                   echo $blue_underline(basename (prompt_pwd))
               else
                   echo $blue(basename (prompt_pwd))
@@ -42,25 +43,32 @@ function fish_prompt
   # Add a newline before prompts
   echo -e ""
 
-  # Display [venvname] if in a virtualenv
-  if set -q VIRTUAL_ENV
-      echo -n -s (set_color -b blue black) ' ' (basename "$VIRTUAL_ENV") ' ' $normal ' '
+  if set -q SSH_CONNECTION
+      echo -n -s (set_color -u blue) (id -nu) '@' (hostname) ':' $normal
   end
 
   # Display the current directory name
   echo -n -s "$cwd$normal"
-
 
   # Show git branch and dirty state
   if [ (_git_branch_name) ]
     set -l git_branch ':' (_git_branch_name)
 
     if [ (_is_git_dirty) ]
-      set git_info $red " ✗" $git_branch
+      set git_info $red " ✘" $git_branch
     else
-      set git_info $green " ✓" $git_branch
+      set git_info $green " ✔" $git_branch
     end
     echo -n -s $git_info $normal
+  end
+
+  # Display [venvname] if in a virtualenv
+  if set -q VIRTUAL_ENV
+      echo -n -s ' ' (set_color -b blue black) ' ' (basename "$VIRTUAL_ENV") ' ' $normal
+  end
+
+  if test $last_status -ne 0
+    echo -n -s (set_color red) ' ‼' $normal
   end
 
   # Terminate with a nice prompt char
@@ -71,7 +79,7 @@ function fish_prompt
     set_color normal
     echo -n -s " "
   else
-    echo -n -s $magenta ' → ' $normal
+    echo -n -s $magenta ' λ ' $normal
   end
 
 end
