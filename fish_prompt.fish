@@ -76,7 +76,7 @@ function fish_prompt
     echo -n -s " "
   else
     if set -q SSH_CONNECTION
-      echo -n -s $yellow ' ⟷ ' $normal
+      echo -n -s $yellow ' ➜  ' $normal
     else
       echo -n -s $magenta ' λ ' $normal
     end
